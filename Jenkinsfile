@@ -1,3 +1,13 @@
+
+allImages = [
+    "webclient",
+    "api",
+    "dicom-receiver",
+    "fixture-service",
+    "tests",
+    "test-reference-image-provider",
+]
+
 pipeline {
     agent {
         node{
@@ -9,16 +19,14 @@ pipeline {
         stage('Config'){
             steps{
                 echo "Branch: ${env.BRANCH_NAME}"
-                sh "docker image ls"
-                sh "docker volume ls"
-                sh "docker network ls"
-                sh "docker container ls"
                 sh "df -h"
             }
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+                script {
+                    parallel getBuildStages(allImages)
+                }
             }
         }
         stage('Test') {
@@ -32,4 +40,20 @@ pipeline {
             }
         }
     }
+}
+
+
+def getBuildStages(images) {
+    def stages = [failFast: true]
+    allImages.each { image ->
+        stages["${image}"] = {
+            stage("Building ${image}") {
+                script {
+                    sh "Hello ${image}"
+                }
+            }
+        }
+    }
+
+    return stages
 }
