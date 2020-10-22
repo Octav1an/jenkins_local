@@ -19,7 +19,6 @@ pipeline {
         stage('Config'){
             steps{
                 echo "Branch: ${env.BRANCH_NAME}"
-                sh "df -h"
             }
         }
         stage('Build') {
