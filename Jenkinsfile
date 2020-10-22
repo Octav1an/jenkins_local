@@ -48,7 +48,7 @@ def getBuildStages(images) {
         stages["${image}"] = {
             stage("Building ${image}") {
                 script {
-                    sh "Hello ${image}"
+                    echo "Hello ${image}"
                 }
             }
         }
