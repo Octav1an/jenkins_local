@@ -10,8 +10,10 @@ allImages = [
 
 pipeline {
     agent {
-        // label "docker"   
-        docker image: 'maven:3-alpine'
+        label "docker"   
+    }
+    environment {
+        GLOBAL_MSG = 'hi there'
     }
     stages {
         stage('Config'){
@@ -29,6 +31,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                echo ${GLOBAL_MSG}
             }
         }
         stage('Deploy') {
