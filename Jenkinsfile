@@ -33,7 +33,7 @@ pipeline {
                 }
                 stage('OTHER'){
                     steps{
-                        scripts{
+                        script{
                             parallel getBuildStages(allImages)
                         }
                     }
