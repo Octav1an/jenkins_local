@@ -1,10 +1,8 @@
 
 allImages = [
-    "webclient",
     "api",
     "dicom-receiver",
     "fixture-service",
-    "tests",
     "test-reference-image-provider",
 ]
 
@@ -23,13 +21,22 @@ pipeline {
         }
         stage('Build') {
             parallel {
-                stage('Test parallel'){
+                stage('webclient'){
                     steps{
-                        echo "parallel here"
+                        echo "webclient here"
+                    }
+                }
+                stage ('tests'){
+                    steps{
+                        echo "tests here"
                     }
                 }
                 stage('OTHER'){
-                    parallel getBuildStages(allImages)
+                    steps{
+                        scripts{
+                            parallel getBuildStages(allImages)
+                        }
+                    }
                 }
             }
 
