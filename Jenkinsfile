@@ -28,11 +28,7 @@ pipeline {
                         echo "parallel here"
                     }
                 }
-                steps {
-                    script {
-                        parallel getBuildStages(allImages)
-                    }
-                }
+                parallel getBuildStages(allImages)
             }
 
         }
