@@ -10,10 +10,10 @@ allImages = [
 
 pipeline {
     agent {
-        label "docker"   
-        // node{
-            
-        // }
+        // label "docker"   
+        docker{
+            image: 'maven:3-alpine'
+        }
     }
     stages {
         stage('Config'){
