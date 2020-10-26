@@ -15,9 +15,6 @@ pipeline {
             
         // }
     }
-    script{
-        echo "he"
-    }
     stages {
         stage('Config'){
             steps{
