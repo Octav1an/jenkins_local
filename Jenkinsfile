@@ -22,11 +22,19 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                script {
-                    parallel getBuildStages(allImages)
+            parallel {
+                stage('Test parallel'){
+                    echo "parallel here"
+                }
+                stage ('other') {
+                    steps {
+                        script {
+                            parallel getBuildStages(allImages)
+                        }
+                    }
                 }
             }
+
         }
         stage('Test') {
             steps {
