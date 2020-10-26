@@ -31,7 +31,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                echo ${GLOBAL_MSG}
+                echo "${GLOBAL_MSG}"
             }
         }
         stage('Deploy') {
