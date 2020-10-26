@@ -31,7 +31,7 @@ pipeline {
                         echo "webclient here"
                     }
                 }
-                stage ('tests'){
+                stages {
                     steps{
                         echo "tests here"
                     }
