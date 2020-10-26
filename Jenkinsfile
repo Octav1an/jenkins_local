@@ -24,7 +24,9 @@ pipeline {
         stage('Build') {
             parallel {
                 stage('Test parallel'){
-                    echo "parallel here"
+                    steps{
+                        echo "parallel here"
+                    }
                 }
                 stage ('other') {
                     steps {
