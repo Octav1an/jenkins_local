@@ -10,11 +10,14 @@ allImages = [
 
 pipeline {
     agent {
-        node{
-            label "docker"   
-        }
+        label "docker"   
+        // node{
+            
+        // }
     }
-
+    script{
+        echo "he"
+    }
     stages {
         stage('Config'){
             steps{
