@@ -20,6 +20,11 @@ pipeline {
             }
         }
         stage('Build') {
+            steps{
+                script{
+                    parallel getBuildStages(allImages)
+                }
+            }
             parallel {
                 stage('webclient'){
                     steps{
@@ -31,13 +36,9 @@ pipeline {
                         echo "tests here"
                     }
                 }
-                stage('OTHER'){
-                    steps{
-                        script{
-                            parallel getBuildStages(allImages)
-                        }
-                    }
-                }
+                // stage('OTHER'){
+
+                // }
             }
 
         }
