@@ -32,7 +32,9 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "${GLOBAL_MSG}"
+                dir("${WORKSPACE}/unstashed")
                 script{
+                    
                     bat "dir"
                     unstash name: "webclient-build"
                     bat "dir"
