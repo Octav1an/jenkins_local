@@ -23,7 +23,7 @@ pipeline {
             steps{
                 script{
                     stash includes: "webclient/build/**", name: "webclient-build"
-                    sh "dir"
+                    bat "dir"
                 }
             }
 
@@ -33,9 +33,9 @@ pipeline {
                 echo 'Testing..'
                 echo "${GLOBAL_MSG}"
                 script{
-                    sh "dir"
+                    bat "dir"
                     unstash name: "webclient-build"
-                    sh "dir"
+                    bat "dir"
                 }
             }
         }
