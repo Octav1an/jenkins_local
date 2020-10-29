@@ -23,7 +23,7 @@ pipeline {
             steps{
                 script{
                     stash includes: "webclient/build/**", name: "webclient-build"
-                    // sh "ls -l"
+                    sh "ls -l"
                     sh "pwd"
                 }
             }
