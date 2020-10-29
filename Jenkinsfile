@@ -22,7 +22,7 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    stash includes: "webclient/build/**", name: stashName("webclient-build")
+                    stash includes: "webclient/build/**", name: "webclient-build"
                     sh "ls -l"
                     sh "pwd"
                 }
@@ -36,7 +36,7 @@ pipeline {
                 script{
                     sh "ls -l"
                     sh "pwd"
-                    unstash name: stashName("webclient-build")
+                    unstash name: "webclient-build"
                     sh "ls -l"
                     sh "pwd"
                 }
