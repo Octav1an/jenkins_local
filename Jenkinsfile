@@ -32,7 +32,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "${GLOBAL_MSG}"
-                dir("${WORKSPACE}\unstashed")
+                dir("${WORKSPACE}\\unstashed")
                 script{
                     
                     bat "dir"
