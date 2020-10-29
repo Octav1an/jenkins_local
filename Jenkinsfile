@@ -22,23 +22,10 @@ pipeline {
         stage('Build') {
             steps{
                 script{
-                    parallel getBuildStages(allImages)
+                    stash includes: "webclient/build/**", name: stashName("webclient-build")
+                    sh "ls -l"
+                    sh "pwd"
                 }
-            }
-            parallel {
-                stage('webclient'){
-                    steps{
-                        echo "webclient here"
-                    }
-                }
-                stage() {
-                    steps{
-                        echo "tests here"
-                    }
-                }
-                // stage('OTHER'){
-
-                // }
             }
 
         }
@@ -46,6 +33,13 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "${GLOBAL_MSG}"
+                script{
+                    sh "ls -l"
+                    sh "pwd"
+                    unstash name: stashName("webclient-build")
+                    sh "ls -l"
+                    sh "pwd"
+                }
             }
         }
         stage('Deploy') {
@@ -57,17 +51,17 @@ pipeline {
 }
 
 
-def getBuildStages(images) {
-    def stages = [failFast: true]
-    allImages.each { image ->
-        stages["${image}"] = {
-            stage("Building ${image}") {
-                script {
-                    echo "Hello ${image}"
-                }
-            }
-        }
-    }
+// def getBuildStages(images) {
+//     def stages = [failFast: true]
+//     allImages.each { image ->
+//         stages["${image}"] = {
+//             stage("Building ${image}") {
+//                 script {
+//                     echo "Hello ${image}"
+//                 }
+//             }
+//         }
+//     }
 
-    return stages
-}
+//     return stages
+// }
